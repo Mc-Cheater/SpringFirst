@@ -4,21 +4,18 @@ package ma.ac.fsr.store.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
-@Getter @Setter
-@EqualsAndHashCode
-@ToString
+@Table(name="PRODUCT")
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class Product extends BaseEntity implements Serializable  {
 
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Identity most use case , auto will sometimes uses sequences which if not defined it may lead to issues
-    @Column(name = "ID")
-    private Long id;
-
+/*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,7 +28,7 @@ public class Product {
     public int hashCode() {
         return Objects.hash(id, title, price, description, category, imageUrl, rating);
     }
-
+*/
     @Column(name = "TITLE")
     private String title;
     @Column(name = "PRICE")
@@ -115,6 +112,10 @@ public class Product {
     @Column(name = "RATING")
     private Double rating;
 
+
+    @ManyToOne
+    @JoinColumn(name="category_id",foreignKey = @ForeignKey(name = "FK_PRODUCT_CATEGORY"))
+    private  Category categoryObject;
 
 
 }

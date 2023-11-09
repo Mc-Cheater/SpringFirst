@@ -1,8 +1,8 @@
 package ma.ac.fsr.store.controller;
 
-
+import ma.ac.fsr.store.dto.CategoryDto;
 import ma.ac.fsr.store.dto.ProductDto;
-import ma.ac.fsr.store.model.Product;
+import ma.ac.fsr.store.service.CategoryService;
 import ma.ac.fsr.store.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +13,18 @@ import java.util.List;
 
 @RestController
 
-@RequestMapping("/api/Product")
-public class ProductController {
+@RequestMapping("/api/Category")
+public class CategoryController {
+
 
     @Autowired
-    private IProductService service;
+    private CategoryService service;
 
     // again here we can inject service using constructor
 
 
     @GetMapping("/")
-    public List<ProductDto> findAll(){
-    return service.getAll();
-}
-
-
-
-
+    public List<CategoryDto> findAll(){
+        return service.getAll();
+    }
 }

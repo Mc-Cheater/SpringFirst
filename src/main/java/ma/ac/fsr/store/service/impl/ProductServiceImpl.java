@@ -20,6 +20,11 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductMapper mapper;
+    //
+    //Or use Constructor for DI  , @RequiredArgsConstructor, also declare attributes private final
+    //
+
+
     @Override
     public List<ProductDto> getAll() {
        return mapper.entityToDto( repository.findAll());
